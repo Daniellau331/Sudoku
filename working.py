@@ -15,7 +15,7 @@ board = [
     [0,4,9,2,0,6,0,0,7]
 ]
 
-
+# function that prints the Sudoku board
 def print_board(bo):
     for i in range(len(bo)):
         if i % 3 == 0 and i != 0:
