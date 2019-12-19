@@ -1,7 +1,6 @@
 # program for solving Sudoku problems by using backtracking algorithm
 
 
-
 board = [
     [7,8,0,4,0,0,1,2,0],
     [6,0,0,0,7,5,0,0,9],
@@ -14,28 +13,28 @@ board = [
     [0,4,9,2,0,6,0,0,7]
 ]
 
+
 # solver function
 def solver(bo):
     find = find_empty(bo)
     # no more empty spot
     if not find:
         return True
-    # still empty spot
+    # still have empty spot
     else:
         # find returns the row and the col of the empty spot
         row , col = find
 
-        for guess in range(1,10):
-            if(checker(bo,guess,row,col)):
-                bo[row][col]=guess
+    for guess in range(1,10):
+        if(checker(bo,guess,row,col)):
+            bo[row][col]=guess
 
             if solver(bo):
                 return True
 
             bo[row][col]=0
 
-        return False
-
+    return False
 
 
 
@@ -84,16 +83,18 @@ def print_board(bo):
                 print(str(bo[i][j]) + " ", end="")
 
 
+
+
 def find_empty(bo):
     for i in range(len(bo)):
-
-        for j in range(len(bo[i])):
+        for j in range(len(bo[0])):
             if bo[i][j] == 0:
-                # print(i,j)
-                return (i,j)
+                return (i, j)  # row, col
 
+    return None
 
 
 print_board(board)
-# print(checker(board,2,0,0))
-print(board[0][0])
+solver(board)
+print("+++++++++++")
+print_board(board)
