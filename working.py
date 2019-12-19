@@ -45,6 +45,7 @@ def checker(bo,guess,row,col):
 
     # check box
     # we want to know which box the current guess is in
+    # True -  good guess     False - bad guess
     box_x = col //3
     box_y = row //3
 
