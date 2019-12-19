@@ -50,7 +50,7 @@ def checker(bo,guess,row,col):
 
     for i in range(box_x*3,box_x+3):
         for j in range(box_y*3,box_y+3):
-            if bo[j][i]==guess:
+            if bo[j][i]==guess and j!=row and i !=col:
                 return False
 
     return True
