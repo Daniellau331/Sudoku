@@ -17,15 +17,24 @@ board = [
 # solver function
 def solver(bo):
     find = find_empty(bo)
-    # not find means there is no empty spot
+    # no more empty spot
     if not find:
         return True
+    # still empty spot
     else:
         # find returns the row and the col of the empty spot
-        i , j = find
+        row , col = find
 
-        for k in range(1,10):
-            return False
+        for guess in range(1,10):
+            if(checker(bo,guess,row,col)):
+                bo[row][col]=guess
+
+            if solver(bo):
+                return True
+
+            bo[row][col]=0
+
+        return False
 
 
 
