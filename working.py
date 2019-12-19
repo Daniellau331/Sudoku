@@ -43,6 +43,16 @@ def checker(bo,guess,row,col):
         if bo[i][col] == guess and i != row:
             return False
 
+    # check box
+    # we want to know which box the current guess is in
+    box_x = col //3
+    box_y = row //3
+
+    for i in range(box_x*3,box_x+3):
+        for j in range(box_y*3,box_y+3):
+            if bo[j][i]==guess:
+                return False
+
     return True
 
 
