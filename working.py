@@ -94,7 +94,10 @@ def find_empty(bo):
     return None
 
 
+
+print("Problem:")
 print_board(board)
 solver(board)
-print("+++++++++++")
+print("+++++++++++", end="\n\n")
+print("Ans:")
 print_board(board)
