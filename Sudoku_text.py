@@ -1,5 +1,4 @@
 # program for solving Sudoku problems by using backtracking algorithm
-# solver.py
 
 
 board = [
