@@ -34,3 +34,10 @@ class Cube:
 
     def set_temp(self,temp):
         self.temp = temp
+
+
+def main():
+    win = pygame.display.set_mode((540,600))
+
+
+main()
