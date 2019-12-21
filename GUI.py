@@ -1,4 +1,7 @@
 # GUI.py
+# There are two classes in this program
+# Grid and Cube
+# Grid holds 9 Cubes
 import pygame
 
 
@@ -14,6 +17,20 @@ class Grid:
         [1, 2, 0, 0, 0, 7, 4, 0, 0],
         [0, 4, 9, 2, 0, 6, 0, 0, 7]
     ]
+
+    def __init__(self,rows, cols, width, height):
+        self.rows = rows
+        self.cols = cols
+        self.width = width
+        self.height = height
+        self.selected = None
+        self.model = None
+        self.cubes = [[Cube(self.board[i][j],i,j,width,height) for j in range(cols)] for i in range(rows)]
+        self.model = None
+
+    def update_model(self):
+        self.model = [[self.cubes[i][j].value for j in range(self.cols)] for i in range(self.rows)]
+
 
 
 class Cube:
