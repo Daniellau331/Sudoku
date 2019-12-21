@@ -28,6 +28,24 @@ class Cube:
         self.height = height
         self.selected = False
 
+    def draw(self, screen):
+        font = pygame.font.SysFont("Arial",50)
+
+        gap = self.width
+        x = self.col * gap
+        y = self.row * gap
+
+        if self.temp !=0 and self.value == 0:
+            text = font.render(str(self.temp),1,(128,128,128))
+            screen.blit(text,(x+5,y+5))
+        elif not(self.value==0):
+            text = font.render(str(self.value),1,(0,0,0))
+            screen.blit(text, (x + (gap/2 - text.get_width()/2), y + (gap/2 - text.get_height()/2)))
+
+        if self.selected:
+            pygame.draw.rect(screen, (255, 0, 0), (x, y, gap, gap), 3)
+
+
 
     def set_value(self,value):
         self.value = value
@@ -38,6 +56,10 @@ class Cube:
 
 def main():
     win = pygame.display.set_mode((540,600))
+    pygame.display.set_caption("Sudoku")
+    while True:
+        pass
+
 
 
 main()
