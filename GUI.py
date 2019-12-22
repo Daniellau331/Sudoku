@@ -3,7 +3,7 @@
 # Grid and Cube
 # Grid holds 9 Cubes
 import pygame
-
+from solver import checker, solver
 
 class Grid:
     board = [
@@ -62,6 +62,22 @@ class Grid:
         row, col = self.selected
         if self.cubes[row][col].value == 0:
             self.cubes[row][col].set_temp(0)
+
+    def put(self, val):
+        row, col = self.selected
+        if self.cubes[row][col].value == 0:
+            self.cubes[row][col].set_value(val)
+            self.update_model()
+
+            if solver(self.model) and checker(self.model, val, row, col):
+                return True
+            else:
+                self.cubes[row][col].set_value(0)
+                self.cubes[row][col].set_temp(0)
+                self.update_model()
+                return False
+
+
 
 
 
@@ -140,6 +156,7 @@ def main():
                 if event.key == pygame.K_RETURN:
                     i, j = board.selected
                     if board.cubes[i][j].temp == 0:
+                        result = board.put(key)
 
 
 
