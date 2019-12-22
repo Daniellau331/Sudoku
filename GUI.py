@@ -40,6 +40,7 @@ class Grid:
         thick, thin = 4, 3
         unit = self.width / 9
 
+        # draw lines
         for i in range(self.rows + 1):
             if i % 3 == 0 and i != 0:
                 # draw thick lines
@@ -48,8 +49,21 @@ class Grid:
 
             else:
                 # draw thin lines
-                pygame.draw.line(screen, (0, 0, 0), (0, i), (self.width, i), thin)
-                pygame.draw.line(screen, (0, 0, 0), (i, 0), (i, self.height), thin)
+                pygame.draw.line(screen, (0, 0, 0), (0, i * unit), (self.width, i * unit), thin)
+                pygame.draw.line(screen, (0, 0, 0), (i * unit, 0), (i * unit, self.height), thin)
+
+        # draw cubes
+        for i in range(self.rows):
+            for j in range(self.cols):
+                self.cubes[i][j].draw()
+
+    # clear selected box
+    def clear(self):
+        row, col = self.selected
+        if self.cubes[row][col].value == 0:
+            self.cubes[row][col].set_temp(0)
+
+
 
 
 class Cube:
@@ -91,8 +105,45 @@ class Cube:
 def main():
     win = pygame.display.set_mode((540, 600))
     pygame.display.set_caption("Sudoku")
-    while True:
-        pass
+    board = Grid(9, 9, 540, 540)
+    run = True
+
+    while run:
+
+        for event in pygame.event.get():
+
+            if event.type == pygame.QUIT:
+                run = False
+
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_1:
+                    key = 1
+                if event.key == pygame.K_2:
+                    key = 2
+                if event.key == pygame.K_3:
+                    key = 3
+                if event.key == pygame.K_4:
+                    key = 4
+                if event.key == pygame.K_5:
+                    key = 5
+                if event.key == pygame.K_6:
+                    key = 6
+                if event.key == pygame.K_7:
+                    key = 7
+                if event.key == pygame.K_8:
+                    key = 8
+                if event.key == pygame.K_9:
+                    key = 9
+                if event.key == pygame.K_DELETE:
+                    board.clear()
+                    key = None
+                if event.key == pygame.K_RETURN:
+                    i, j = board.selected
+                    if board.cubes[i][j].temp == 0:
+
+
+
+
 
 
 main()
