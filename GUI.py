@@ -78,6 +78,14 @@ class Grid:
                 return False
 
 
+    def is_finished(self):
+        for i in range(self.rows):
+            for j in range(self.cols):
+                if self.cubes[i][j].value == 0:
+                    return False
+        return True
+
+
 
 
 
@@ -156,7 +164,18 @@ def main():
                 if event.key == pygame.K_RETURN:
                     i, j = board.selected
                     if board.cubes[i][j].temp == 0:
-                        result = board.put(key)
+                        # if temp value is correct
+                        if board.put(board.cubes[i][j].temp):
+                            print("Correct")
+                        else:
+                            print("Wrong")
+                        key = None
+
+
+
+
+
+
 
 
 
