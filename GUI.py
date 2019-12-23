@@ -108,6 +108,23 @@ class Grid:
         self.cubes[row][col].selected = True
         self.selected = (row, col)
 
+    # todo: solve()
+    def solve(self):
+        solver(self.board)
+        for i in range(self.rows):
+            if i % 3 == 0 and i != 0:
+                print("- - - - - - - - - - - - - ")
+
+            for j in range(self.cols):
+                if j % 3 == 0 and j != 0:
+                    print(" | ", end="")
+
+                if j == 8:
+                    print(self.board[i][j])
+                else:
+                    print(str(self.board[i][j]) + " ", end="")
+
+
 
 
 class Cube:
@@ -201,6 +218,10 @@ def main():
                     if board.is_finished():
                         print("Game Over")
                         run = False
+
+                if event.key == pygame.K_SPACE:
+                    board.solve()
+                    print("space")
 
             if event.type == pygame.MOUSEBUTTONDOWN:
                 position = pygame.mouse.get_pos()
