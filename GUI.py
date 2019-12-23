@@ -190,7 +190,7 @@ def main():
                     key = None
                 if event.key == pygame.K_RETURN:
                     i, j = board.selected
-                    if board.cubes[i][j].temp == 0:
+                    if board.cubes[i][j].temp != 0:
                         # if temp value is correct
                         if board.put(board.cubes[i][j].temp):
                             print("Correct")
