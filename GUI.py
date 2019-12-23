@@ -204,9 +204,11 @@ def main():
 
             if event.type == pygame.MOUSEBUTTONDOWN:
                 position = pygame.mouse.get_pos()
+                print(position)
                 clicked = board.click(position)
+                print(clicked)
                 if clicked:
-                    board.selected(clicked[0], clicked[1])
+                    board.select(clicked[0], clicked[1])
                     key = None
 
         if board.selected and key is not None:
@@ -217,3 +219,4 @@ def main():
 
 
 main()
+pygame.quit()
