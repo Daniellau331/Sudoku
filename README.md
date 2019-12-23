@@ -1,2 +1,2 @@
 # Introduction
-This is a little project that solves the Sudoku problems by using the backtrack algorithm. 
+This is a simple Sudoku game built by pygame
