@@ -3,7 +3,7 @@
 # Grid and Cube
 # Grid holds 9 Cubes
 import pygame
-from solver import checker, solver
+from solver import checker, solver, print_board
 pygame.font.init()
 
 class Grid:
@@ -111,18 +111,8 @@ class Grid:
     # todo: solve()
     def solve(self):
         solver(self.board)
-        for i in range(self.rows):
-            if i % 3 == 0 and i != 0:
-                print("- - - - - - - - - - - - - ")
+        print_board(self.board)
 
-            for j in range(self.cols):
-                if j % 3 == 0 and j != 0:
-                    print(" | ", end="")
-
-                if j == 8:
-                    print(self.board[i][j])
-                else:
-                    print(str(self.board[i][j]) + " ", end="")
 
 
 
