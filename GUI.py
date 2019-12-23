@@ -94,6 +94,10 @@ class Grid:
         else:
             return None
 
+    def sketch(self, key):
+        row, col = self.selected
+        self.cubes[row][col].set_temp(key)
+
 
 
 class Cube:
@@ -185,6 +189,13 @@ def main():
             if event.type == pygame.MOUSEBUTTONDOWN:
                 position = pygame.mouse.get_pos()
                 clicked = board.click(position)
+                if clicked:
+                    board.selected(clicked[0], clicked[1])
+                    key = None
+
+        if board.selected and key != None:
+
+
 
 
 main()
