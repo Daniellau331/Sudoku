@@ -115,7 +115,7 @@ class Cube:
     def draw(self, screen):
         font = pygame.font.SysFont("comicsans", 50)
 
-        gap = self.width
+        gap = self.width / 9
         x = self.col * gap
         y = self.row * gap
 
