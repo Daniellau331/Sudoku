@@ -108,7 +108,6 @@ class Grid:
         self.cubes[row][col].selected = True
         self.selected = (row, col)
 
-    # todo: solve()
     def solve(self):
         solver(self.board)
         print_board(self.board)
