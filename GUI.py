@@ -5,6 +5,7 @@
 import pygame
 from solver import checker, solver
 
+
 class Grid:
     board = [
         [7, 8, 0, 4, 0, 0, 1, 2, 0],
@@ -77,7 +78,6 @@ class Grid:
                 self.update_model()
                 return False
 
-
     def is_finished(self):
         for i in range(self.rows):
             for j in range(self.cols):
@@ -85,8 +85,14 @@ class Grid:
                     return False
         return True
 
-
-
+    def click(self, position):
+        if position[0] < self.width and position[1] < self.height:
+            gap = self.width / 9
+            x = position[0] // gap
+            y = position[1] // gap
+            return (int(x),int(y))
+        else:
+            return None
 
 
 
@@ -101,6 +107,7 @@ class Cube:
         self.width = width
         self.height = height
         self.selected = False
+        self.temp = 0
 
     def draw(self, screen):
         font = pygame.font.SysFont("Arial", 50)
@@ -171,15 +178,13 @@ def main():
                             print("Wrong")
                         key = None
 
+                    if board.is_finished():
+                        print("Game Over")
+                        run = False
 
-
-
-
-
-
-
-
-
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                position = pygame.mouse.get_pos()
+                clicked = board.click(position)
 
 
 main()
