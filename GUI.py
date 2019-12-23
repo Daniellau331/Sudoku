@@ -4,7 +4,7 @@
 # Grid holds 9 Cubes
 import pygame
 from solver import checker, solver
-
+pygame.font.init()
 
 class Grid:
     board = [
@@ -56,7 +56,7 @@ class Grid:
         # draw cubes
         for i in range(self.rows):
             for j in range(self.cols):
-                self.cubes[i][j].draw()
+                self.cubes[i][j].draw(screen)
 
     # clear selected box
     def clear(self):
@@ -90,14 +90,13 @@ class Grid:
             gap = self.width / 9
             x = position[0] // gap
             y = position[1] // gap
-            return (int(x),int(y))
+            return (int(x), int(y))
         else:
             return None
 
     def sketch(self, key):
         row, col = self.selected
         self.cubes[row][col].set_temp(key)
-
 
 
 class Cube:
@@ -114,7 +113,7 @@ class Cube:
         self.temp = 0
 
     def draw(self, screen):
-        font = pygame.font.SysFont("Arial", 50)
+        font = pygame.font.SysFont("comicsans", 50)
 
         gap = self.width
         x = self.col * gap
@@ -137,8 +136,14 @@ class Cube:
         self.temp = temp
 
 
+def redraw(screen, board):
+    # background color
+    screen.fill((255, 255, 255))
+    board.draw(screen)
+
+
 def main():
-    win = pygame.display.set_mode((540, 600))
+    screen = pygame.display.set_mode((540, 600))
     pygame.display.set_caption("Sudoku")
     board = Grid(9, 9, 540, 540)
     run = True
@@ -193,9 +198,11 @@ def main():
                     board.selected(clicked[0], clicked[1])
                     key = None
 
-        if board.selected and key != None:
+        if board.selected and key is not None:
+            board.sketch(key)
 
-
+        redraw(screen, board)
+        pygame.display.update()
 
 
 main()
