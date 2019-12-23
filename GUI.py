@@ -112,6 +112,7 @@ class Grid:
     def solve(self):
         solver(self.board)
         print_board(self.board)
+        self.cubes = [[Cube(self.board[i][j], i, j, self.width, self.height) for j in range(self.cols)] for i in range(self.rows)]
 
 
 
